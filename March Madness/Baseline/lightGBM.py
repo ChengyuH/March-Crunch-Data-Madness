@@ -17,10 +17,10 @@ def lightGBM(X_train, y_train):
     clf = lgb.LGBMClassifier(max_depth=100, random_state=1, n_jobs=4, n_estimators=1000)
     RS = RandomizedSearchCV(
         estimator=clf, param_distributions=param_test,
-        n_iter= 500,
+        n_iter= 100,
         scoring='neg_log_loss',
-        cv=5,
-        random_state=42)
+        cv=3,
+        random_state=1)
 
     RS.fit(X_train, y_train)
 

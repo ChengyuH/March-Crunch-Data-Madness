@@ -24,7 +24,7 @@ def distance(lat1, lon1, lat2, lon2):
 
 
 def feature_engineering(df):
-    df["sead_diff"] = df["team1_seed"] - df["team2_seed"]
+    df["seed_diff"] = df["team1_seed"] - df["team2_seed"]
 
     df['team1_region'] = df["team1_position"].str[:1]
     df['team2_region'] = df["team2_position"].str[:1]
@@ -43,5 +43,9 @@ def feature_engineering(df):
     df['diff_dist'] = df['dist1'] - df['dist2']
 
     df['team1_win'] = (df['team1_score'] > df['team2_score']).astype(int)
+
+    df['team1_ap_final'].fillna(64, inplace = True)
+
+    df['team2_ap_final'].fillna(64, inplace = True)
 
     return df
